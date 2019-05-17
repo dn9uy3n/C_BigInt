@@ -5,6 +5,10 @@
 #include "BigInt_Set.h"
 #include "BigInt_Bits.h"
 #include "BigInt_Comp.h"
+#include "BigInt_Math_Base.h"
+#include "BigInt_Math_Mul.h"
+#include "BigInt_Math_Log.h"
+#include "Bigint_Math_Pow.h"
 
 
 #endif

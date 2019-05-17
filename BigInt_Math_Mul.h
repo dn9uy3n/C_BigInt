@@ -30,7 +30,7 @@ void bigint_mul_int_res(uin b, bigint a, bigint res)
         r /= BIGINT_BASE;
     }
 }
-// a *= b
+// a *= b // &a != &b
 void bigint_mul_bigint(bigint b, bigint a)
 {
     bigint t, _res;
@@ -43,7 +43,7 @@ void bigint_mul_bigint(bigint b, bigint a)
     }
     bigint_set_bigint(_res, a);
 }
-// res = a * b
+// res = a * b // &a != &b
 void bigint_mul_bigint_res(bigint b, bigint a, bigint res)
 {
     bigint t;
@@ -55,7 +55,7 @@ void bigint_mul_bigint_res(bigint b, bigint a, bigint res)
         bigint_add_bigint(t, res);
     }
 }
-// a /= b
+// a /= b // &a != &b
 void bigint_div_bigint(bigint b, bigint a)
 {
     // case: a <= b
@@ -170,7 +170,7 @@ void bigint_div_bigint_res(bigint b, bigint a, bigint res)
     }
     bigint_set_bigint(_a,a);
 }
-// a /= b
+// a /= b // &a != &b
 void bigint_div_int(uin b, bigint a)
 {
     bigint _b; bigint_set_int(b,_b);
@@ -181,6 +181,65 @@ void bigint_div_int_res(uin b, bigint a, bigint res)
 {
     bigint_set_bigint(a,res);
     bigint_div_int(b,res);
+}
+// q = a / b, r = a % b // &a!=&b!=&c!=&d
+void bigint_divide_bigint(bigint b, bigint a, bigint q, bigint r)
+{
+    // case: a <= b
+    if (bigint_less_bigint(a,b))
+    {
+        bigint_set_zero(q);
+        return;
+    }
+    if (bigint_equal_bigint(a,b))
+    {
+        bigint_set_int(1,q);
+        return;
+    }
+
+    // case a > b
+    i16 diff = (i16) bigint_log2(a) - bigint_log2(b);
+    if (diff == 0)
+    {
+        bigint_set_int(1,q);
+        return;
+    }
+
+    bigint _mul_b; // _mul_b = 2^_x*b
+    bigint _2_x;
+    bigint _a;
+
+    bigint_set_bigint(a,_a);
+    bigint_set_zero(q);
+    bigint_set_bigint(b,_mul_b);
+    bigint_shift_bit_left(_mul_b, diff);
+    bigint_set_int(1,_2_x);
+    bigint_shift_bit_left(_2_x, diff);
+
+    if (bigint_less_bigint(a,_mul_b))
+    {
+        bigint_shift_bit_right(_mul_b,1);
+        bigint_shift_bit_right(_2_x,1);
+    }
+
+    while (!bigint_less_bigint(a,b))
+    {
+        bigint_sub_bigint(_mul_b, a); // a -= 2^_x *b
+        bigint_add_bigint(_2_x,q); // q += 2^x
+
+        //shift right _mul_b until binary length _mul_b = binary length a
+        diff = (i16) bigint_log2(_mul_b) - bigint_log2(a);
+        bigint_shift_bit_right(_mul_b,diff);
+        bigint_shift_bit_right(_2_x,diff);
+
+        if (bigint_less_bigint(a,_mul_b))
+        {
+            bigint_shift_bit_right(_mul_b,1);
+            bigint_shift_bit_right(_2_x,1);
+        }
+    }
+    bigint_set_bigint(a,r);
+    bigint_set_bigint(_a,a);
 }
 // a %= b
 void bigint_mod_bigint(bigint b, bigint a)
@@ -286,6 +345,5 @@ void bigint_mod_int(uin b, bigint a)
     uin res = bigint_mod_int_res(b,a);
     bigint_set_int(res,a);
 }
-
 
 #endif

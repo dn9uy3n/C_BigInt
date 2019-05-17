@@ -1,8 +1,8 @@
 #ifndef __BIGINT_RAND__
 #define __BIGINT_RAND__
 
-#include "LargeInt_Conf.h"
-#include "LargeInt_Math.h"
+#include "BigInt_Conf.h"
+#include "BigInt_Math.h"
 #include <time.h>
 
 // a = rand()
