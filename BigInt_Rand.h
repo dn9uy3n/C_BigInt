@@ -16,7 +16,7 @@ void bigint_rand(bigint a)
 void bigint_rand_range(bigint a, bigint lim)
 {
     bigint_rand(a);
-    bigint_div_bigint(lim,a);
+    bigint_mod_bigint(lim,a);
 }
 
 #endif
