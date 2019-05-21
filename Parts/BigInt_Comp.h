@@ -2,8 +2,8 @@
 #define __BIGINT_COMP__
 
 #include "BigInt_Conf.h"
-#include "BigInt_Set.h"
 #include "BigInt_Bits.h"
+#include "BigInt_Set.h"
 #include "bool.h"
 
 // a == b
