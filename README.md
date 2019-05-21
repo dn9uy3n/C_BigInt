@@ -10,7 +10,7 @@ BIGINT_LEN can be changed.
 
 Sample:
 
-{
+```c
 #include <stdio.h>
 #include "BigInt.h"
 
@@ -29,5 +29,5 @@ int main()
 
     return 0;
 }
-}
+```
 
