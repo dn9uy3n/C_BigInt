@@ -15,12 +15,15 @@ void bigint_print_arr(bigint a)
 }
 void bigint_print_dec(bigint a)
 {
-    char str[4096];
+    ii n = 0;
+    char str[BIGINT_SIZE*4];
     memset(str, 0, 4096);
 
-    ii n = 0;
     bigint _a;
-    bigint_set_bigint(a, _a);
+    bigint_set_bigint(a,_a);
+    if (bigint_is_negative(_a))
+        bigint_opposite(_a);
+
 
     while (!bigint_equal_int(0, _a))
     {
@@ -29,6 +32,8 @@ void bigint_print_dec(bigint a)
     }
     if (n == 0)
         str[n++] = '0';
+    if (bigint_is_negative(a))
+        str[n++] = '-';
     for (ii i = n - 1; i >= 0; i--)
         printf("%c", str[i]);
     printf("\n");

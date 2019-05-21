@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+#include "BigInt.h"
+
+int main2()
+{
+    bigint a;
+    bigint_set_int(50,a);
+    bigint_sub_int(100,a);
+    
+    bigint b;
+    bigint_set_int(120,b);
+
+    bigint_mul_bigint(b,a);
+
+    bigint_opposite(a);
+    bigint_print_dec(a);
+}
+int main()
+{
+    int a = -5;
+    int b = 2;
+    int c = a%b;
+    printf("%d",c);
+}
+=======
 #include <stdio.h>
 #include <stdlib.h>
 #include "BigInt.h"
@@ -130,3 +155,4 @@ int main2()
     printf("%d",x);
     return 0;
 }
+>>>>>>> master

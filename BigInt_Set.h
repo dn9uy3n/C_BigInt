@@ -12,6 +12,7 @@ void bigint_set_zero(bigint a)
 // a = b
 void bigint_set_int(uin b, bigint a)
 {
+    
     for (ii i=0; i<BIGINT_LEN; i++)
     {
         a[i] = b % BIGINT_BASE;

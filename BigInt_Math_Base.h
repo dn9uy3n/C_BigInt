@@ -83,4 +83,16 @@ void bigint_sub_int_res(uin b, bigint a, bigint res)
     bigint_set_bigint(a,res);
     bigint_sub_int(b,res);
 }
+// a = -a
+void bigint_opposite(bigint a)
+{
+    bigint_reverse_bit(a);
+    bigint_add_int(1,a);
+}
+// a = abs(a)
+void bigint_absolute(bigint a)
+{
+    if (bigint_is_negative(a))
+        bigint_opposite(a);
+}
 #endif

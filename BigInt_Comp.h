@@ -3,6 +3,7 @@
 
 #include "BigInt_Conf.h"
 #include "BigInt_Set.h"
+#include "BigInt_Bits.h"
 #include "bool.h"
 
 // a == b
@@ -53,5 +54,14 @@ bool bigint_is_even(bigint a)
 bool bigint_is_odd(bigint a)
 {
     return (a[0]&1);
+}
+// return (a<0)
+bool bigint_is_negative(bigint a)
+{
+    return (bigint_is_on_bit(a,BIGINT_SIZE-1));
+}
+bool bigint_is_positive(bigint a)
+{
+    return !(bigint_is_on_bit(a, BIGINT_SIZE-1));
 }
 #endif

@@ -58,19 +58,28 @@ void bigint_mul_bigint_res(bigint b, bigint a, bigint res)
 // a /= b // &a != &b
 void bigint_div_bigint(bigint b, bigint a)
 {
-    // case: a <= b
+    bool _positive_a = bigint_is_positive(a);
+    bool _positive_b = bigint_is_positive(b);
+    bool opposite = _positive_a ^ _positive_b;
+    bigint_absolute(a);
+    bigint_absolute(b);
+
+    // abs(a)<abs(b)
     if (bigint_less_bigint(a,b))
     {
         bigint_set_zero(a);
         return;
     }
+    // log2(abs(a)) == log2(abs(b)) // b*2>a
     if (bigint_equal_bigint(a,b))
     {
-        bigint_set_int(1,a);
+        if (opposite)
+            bigint_set_int(-1,a);
+        else
+            bigint_set_int(1,a);
         return;
     }
-
-    // case a > b
+    // abs(a) > abs(b)
     i16 diff = (i16) bigint_log2(a) - bigint_log2(b);
     if (diff == 0)
     {
@@ -110,7 +119,12 @@ void bigint_div_bigint(bigint b, bigint a)
             bigint_shift_bit_right(_2_x,1);
         }
     }
+    if (!_positive_b)
+        bigint_opposite(b);
     bigint_set_bigint(_res,a);
+    if (opposite)
+        bigint_opposite(a);
+    
 }
 // res = a / b // &res != {&a,&b}
 void bigint_div_bigint_res(bigint b, bigint a, bigint res)

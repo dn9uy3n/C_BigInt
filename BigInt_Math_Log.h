@@ -7,6 +7,8 @@
 // return log2(a)
 uin bigint_log2(bigint a)
 {
+    if (bigint_is_negative(a))
+        return 0;
     for (ii i=BIGINT_LEN-1; i>=0; i--)
         if (a[i]!=0)
             for (ii j=7; j>=0; j--)

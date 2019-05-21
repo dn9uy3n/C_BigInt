@@ -5,9 +5,9 @@
 #include "bool.h"
 
 //a = a << 8*sh (base 256)
-void bigint_shift_digit_left(bigint a, uin shift)
+void bigint_shift_digit_left(bigint a, i16 shift)
 {
-    if (shift == 0)
+    if (shift <= 0)
         return;
 
     // shift = min(shift, BIGINT_LEN)
@@ -21,9 +21,9 @@ void bigint_shift_digit_left(bigint a, uin shift)
         a[i] = 0;
 }
 //a = a >> 8*shift (base 256)
-void bigint_shift_digit_right(bigint a, uin shift)
+void bigint_shift_digit_right(bigint a, i16 shift)
 {
-    if (shift == 0)
+    if (shift <= 0)
         return;
 
     // shift = min(shift, BIGINT_LEN)
@@ -37,9 +37,9 @@ void bigint_shift_digit_right(bigint a, uin shift)
         a[BIGINT_LEN - 1 - i] = 0;
 }
 //a = a >> sh
-void bigint_shift_bit_right(bigint a, uin shift)
+void bigint_shift_bit_right(bigint a, i16 shift)
 {
-    if (shift == 0)
+    if (shift <= 0)
         return;
 
     bigint_shift_digit_right(a, shift / BIGINT_DBITS);
@@ -53,9 +53,9 @@ void bigint_shift_bit_right(bigint a, uin shift)
     a[BIGINT_LEN-1] >>= shift;
 }
 // a = a << sh
-void bigint_shift_bit_left(bigint a, uin shift)
+void bigint_shift_bit_left(bigint a, i16 shift)
 {
-    if (shift == 0)
+    if (shift <= 0)
         return;
 
     bigint_shift_digit_left(a, shift / BIGINT_DBITS);
@@ -69,9 +69,9 @@ void bigint_shift_bit_left(bigint a, uin shift)
     a[0] <<= shift;
 }
 // check if bit at pos is on
-bool bigint_is_on_bit(bigint a, uin pos)
+bool bigint_is_on_bit(bigint a, i16 pos)
 {
-    if (pos>1023)
+    if (pos>1023 || pos<0)
         return false;
     return a[pos/BIGINT_DBITS] & (1<<(pos%BIGINT_DBITS));
 }
@@ -81,5 +81,10 @@ void bigint_on_bit(bigint a, uin pos)
     if (pos>1023)
         return;
     a[pos/BIGINT_DBITS] |= (1<<(pos%BIGINT_DBITS));
+}
+void bigint_reverse_bit(bigint a)
+{
+    for (ii i=0; i<BIGINT_LEN; i++)
+        a[i] = ~a[i];
 }
 #endif

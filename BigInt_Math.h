@@ -8,7 +8,7 @@
 #include "BigInt_Math_Base.h"
 #include "BigInt_Math_Mul.h"
 #include "BigInt_Math_Log.h"
-#include "Bigint_Math_Pow.h"
+#include "BigInt_Math_Pow.h"
 
 
 #endif
