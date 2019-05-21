@@ -3,10 +3,15 @@ Big Integer for C99.
 
 Numbers are represented in array of byte:
 N = a[0] + a[1] + ... + a[BIGINT_LEN-1]
+
 BIGINT_LEN can be changed.
 
+
 . Header-Only
+
 . Optimized
+
+
 
 Sample:
 
