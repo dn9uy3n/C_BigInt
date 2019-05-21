@@ -5,7 +5,7 @@
 #include "BigInt_Bits.h"
 
 // return log2(a)
-uin bigint_log2(bigint a)
+i16 bigint_log2(bigint a)
 {
     if (bigint_is_negative(a))
         return 0;

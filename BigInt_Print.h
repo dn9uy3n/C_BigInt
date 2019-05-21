@@ -13,6 +13,7 @@ void bigint_print_arr(bigint a)
         printf("%3d", a[i]);
     printf("\n");
 }
+/*
 void bigint_print_dec(bigint a)
 {
     ii n = 0;
@@ -25,7 +26,7 @@ void bigint_print_dec(bigint a)
         bigint_opposite(_a);
 
 
-    while (!bigint_equal_int(0, _a))
+    while (!bigint_is_equal_int(0, _a))
     {
         str[n++] = '0' + bigint_mod_int_res(10,_a);
         bigint_div_int(10, _a);
@@ -38,4 +39,5 @@ void bigint_print_dec(bigint a)
         printf("%c", str[i]);
     printf("\n");
 }
+*/
 #endif

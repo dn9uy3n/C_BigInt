@@ -71,17 +71,25 @@ void bigint_shift_bit_left(bigint a, i16 shift)
 // check if bit at pos is on
 bool bigint_is_on_bit(bigint a, i16 pos)
 {
-    if (pos>1023 || pos<0)
+    if (pos>=BIGINT_SIZE || pos<0)
         return false;
     return a[pos/BIGINT_DBITS] & (1<<(pos%BIGINT_DBITS));
 }
 // turn on bit at pos
-void bigint_on_bit(bigint a, uin pos)
+void bigint_on_bit(bigint a, i16 pos)
 {
-    if (pos>1023)
+    if (pos>=BIGINT_SIZE || pos<0)
         return;
     a[pos/BIGINT_DBITS] |= (1<<(pos%BIGINT_DBITS));
 }
+// turn off bit at pos
+void bigint_off_bit(bigint a, i16 pos)
+{
+    if (pos>=BIGINT_SIZE || pos<0)
+        return;
+    a[pos/BIGINT_DBITS] &= ~(1<<(pos%BIGINT_DBITS));
+}
+// a = ~a
 void bigint_reverse_bit(bigint a)
 {
     for (ii i=0; i<BIGINT_LEN; i++)

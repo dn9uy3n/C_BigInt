@@ -12,7 +12,6 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-std=c99" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -32,26 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="BigInt.h" />
-		<Unit filename="BigInt_Bits.h" />
-		<Unit filename="BigInt_Comp.h" />
-		<Unit filename="BigInt_Conf.h" />
-		<Unit filename="BigInt_Math.h" />
-		<Unit filename="BigInt_Math_Base.h" />
-		<Unit filename="BigInt_Math_Log.h" />
-		<Unit filename="BigInt_Math_Mul.h" />
-		<Unit filename="BigInt_Math_Pow.h" />
-		<Unit filename="BigInt_Print.h" />
-		<Unit filename="BigInt_Rand.h" />
-		<Unit filename="BigInt_Set.h" />
-		<Unit filename="Miller.h" />
-		<Unit filename="bool.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
 			<code_completion />
+			<envvars />
 			<debugger />
+			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

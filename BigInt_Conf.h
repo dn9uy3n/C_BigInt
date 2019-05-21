@@ -13,5 +13,6 @@ typedef uint8_t bigint[BIGINT_LEN];
 typedef int16_t ii;
 typedef int16_t i16;
 typedef uint16_t u16;
+typedef int32_t i32;
 
 #endif //__BIGINT_CONFIG__

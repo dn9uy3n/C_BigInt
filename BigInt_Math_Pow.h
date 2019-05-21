@@ -21,7 +21,7 @@ void bigint_pow_mod_bigint(bigint a, bigint b, bigint c, bigint d)
     bigint_set_zero(t);
     bigint_set_int(1,d);
 
-    while (!bigint_equal_int(0,_b))
+    while (!bigint_is_equal_int(0,_b))
     {
         if (bigint_is_odd(_b))
         {

@@ -46,7 +46,7 @@ bool miller_test_prime(bigint n, uin trials)
         bigint x;
         bigint_pow_mod_bigint(a, d, n, x);
 
-        if (bigint_equal_int(1, x) || bigint_equal_bigint(x, n_1))
+        if (bigint_is_equal_int(1, x) || bigint_is_equal_bigint(x, n_1))
             continue;
         for (ii r = 0; r < s - 1; r++)
         {
@@ -56,14 +56,14 @@ bool miller_test_prime(bigint n, uin trials)
             bigint_mod_bigint_res(n, x2, g);
             bigint_set_bigint(g,x);
 
-            if (bigint_equal_int(1,x))
+            if (bigint_is_equal_int(1,x))
                 return false;
 
-            if (bigint_equal_bigint(x, n_1))
+            if (bigint_is_equal_bigint(x, n_1))
                 break;
         }
 
-        if (!bigint_equal_bigint(x, n_1))
+        if (!bigint_is_equal_bigint(x, n_1))
             return false;
     }
     return true;

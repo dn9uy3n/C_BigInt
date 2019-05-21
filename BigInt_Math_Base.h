@@ -7,7 +7,7 @@
 // a += b
 void bigint_add_bigint(bigint b, bigint a)
 {
-    uin x= 0;
+    i16 x= 0;
     for (ii i=0; i< BIGINT_LEN; i++)
     {
         x += b[i];
@@ -23,9 +23,9 @@ void bigint_add_bigint_res(bigint b, bigint a, bigint res)
     bigint_add_bigint(b,res);
 }
 // a += b
-void bigint_add_int(uin b, bigint a)
+void bigint_add_int(i16 b, bigint a)
 {
-    uin x = b;
+    i16 x = b;
     for (ii i = 0; i < BIGINT_LEN; i++)
     {
         x += a[i];
@@ -34,7 +34,7 @@ void bigint_add_int(uin b, bigint a)
     }
 }
 // res = a + b // &res != {a}
-void bigint_add_int_res(uin b, bigint a, bigint res)
+void bigint_add_int_res(i16 b, bigint a, bigint res)
 {
     bigint_set_bigint(a,res);
     bigint_add_int(b,res);
@@ -42,7 +42,7 @@ void bigint_add_int_res(uin b, bigint a, bigint res)
 // a -= b
 void bigint_sub_bigint(bigint b, bigint a)
 {
-    uin r = 0;
+    i16 r = 0;
     for (ii i = 0; i < BIGINT_LEN; i++)
         if (a[i] < r + b[i])
         {
@@ -62,9 +62,9 @@ void bigint_sub_bigint_res(bigint b, bigint a, bigint res)
     bigint_sub_bigint(b,res);
 }
 // a -= b
-void bigint_sub_int(uin b, bigint a)
+void bigint_sub_int(i16 b, bigint a)
 {
-    uin r = b;
+    i16 r = b;
     for (ii i = 0; i < BIGINT_LEN; i++)
         if (a[i] < r % BIGINT_BASE)
         {
@@ -78,7 +78,7 @@ void bigint_sub_int(uin b, bigint a)
         }
 }
 // res = a - b // &res != {a}
-void bigint_sub_int_res(uin b, bigint a, bigint res)
+void bigint_sub_int_res(i16 b, bigint a, bigint res)
 {
     bigint_set_bigint(a,res);
     bigint_sub_int(b,res);
